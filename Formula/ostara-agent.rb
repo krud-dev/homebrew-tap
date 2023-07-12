@@ -3,8 +3,8 @@ class OstaraAgent < Formula
   homepage "https://github.com/krud-dev/ostara"
   url "https://github.com/krud-dev/ostara-agent.git",
     branch:   "main",
-    tag:      "v0.0.2",
-    revision: "b298e27769bc7907b535d45de8b1e852a3091666"
+    tag:      "v0.0.3",
+    revision: "a6caa3e72a10e66b9098f00f3f5b7d4f1a7dfb85"
   head "https://github.com/krud-dev/ostara-agent.git", branch: "main"
 
   bottle do
