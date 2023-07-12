@@ -9,7 +9,7 @@ class OstaraAgent < Formula
 
   bottle do
     root_url "https://github.com/krud-dev/homebrew-tap/releases/download/ostara-agent-0.0.2"
-    sha256 cellar: :any_skip_relocation, all:      "79ef0f250ee28ce846e0801a8653fe8ee87efb70de0087e91912f99fe19db68a"
+    sha256 cellar: :any_skip_relocation, all: "79ef0f250ee28ce846e0801a8653fe8ee87efb70de0087e91912f99fe19db68a"
   end
   depends_on "openjdk@17"
 
@@ -23,11 +23,11 @@ class OstaraAgent < Formula
 
   def install
     system "./gradlew", "bootJar"
-    inreplace "scripts/ostara-agent", "##PREFIX##", prefix.to_s
-    inreplace "scripts/ostara-agent", "##JAVA_HOME##", Formula["openjdk@17"].opt_prefix
-    inreplace "scripts/ostara-agent", "##CONFIGFILE##", etc / "ostara-agent.yml"
     prefix.install "build/libs/ostara-agent.jar"
-    bin.install "scripts/ostara-agent"
+    (bin/"ostara-agent").write <<~EOS
+      #!/bin/bash
+      "#{Formula["openjdk@17"].opt_prefix}/bin/java" -Dconfig.file=#{etc / "ostara-agent.yml"} -jar #{prefix}/ostara-agent.jar "$@"
+    EOS
   end
 
   def caveats
