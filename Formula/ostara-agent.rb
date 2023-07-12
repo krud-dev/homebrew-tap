@@ -1,10 +1,9 @@
-require "formula"
-
 class OstaraAgent < Formula
+  desc "The Ostara service discovery/relay agent."
   homepage "https://github.com/krud-dev/ostara"
   url "https://github.com/krud-dev/ostara-agent.git",
-    branch: "main",
-    tag: "v0.0.1",
+    branch:   "main",
+    tag:      "v0.0.1",
     revision: "7961354de30fe5ce8fd8d95a0874908fc461ddce"
   head "https://github.com/krud-dev/ostara-agent.git", branch: "main"
   depends_on "openjdk@17"
@@ -21,7 +20,7 @@ class OstaraAgent < Formula
   def install
     ENV["JAVA_HOME"] = Formula["openjdk@17"].opt_prefix
     system "./gradlew", "bootJar"
-    inreplace "scripts/ostara-agent", "##PREFIX##", "#{prefix}"
+    inreplace "scripts/ostara-agent", "##PREFIX##", prefix.to_s
     prefix.install "build/libs/ostara-agent.jar"
     bin.install "scripts/ostara-agent"
   end
