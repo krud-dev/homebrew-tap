@@ -3,8 +3,8 @@ class OstaraAgent < Formula
   homepage "https://github.com/krud-dev/ostara"
   url "https://github.com/krud-dev/ostara-agent.git",
     branch:   "main",
-    tag:      "v0.0.1",
-    revision: "7961354de30fe5ce8fd8d95a0874908fc461ddce"
+    tag:      "v0.0.2",
+    revision: "b298e27769bc7907b535d45de8b1e852a3091666"
   head "https://github.com/krud-dev/ostara-agent.git", branch: "main"
   depends_on "openjdk@17"
 
