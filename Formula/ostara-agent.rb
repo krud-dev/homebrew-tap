@@ -1,5 +1,5 @@
 class OstaraAgent < Formula
-  desc "The Ostara service discovery/relay agent."
+  desc "Ostara service discovery/relay agent"
   homepage "https://github.com/krud-dev/ostara"
   url "https://github.com/krud-dev/ostara-agent.git",
     branch:   "main",
@@ -9,8 +9,7 @@ class OstaraAgent < Formula
   depends_on "openjdk@17"
 
   service do
-    java_path = File.join(Formula["openjdk@17"].opt_prefix, "bin", "java")
-    run [java_path, "-jar", opt_prefix / "ostara-agent.jar"]
+    run [opt_bin/"ostara-agent", "start"]
     keep_alive true
     error_log_path var / "log/ostara-agent.log"
     log_path var / "log/ostara-agent.log"
@@ -18,9 +17,10 @@ class OstaraAgent < Formula
   end
 
   def install
-    ENV["JAVA_HOME"] = Formula["openjdk@17"].opt_prefix
     system "./gradlew", "bootJar"
     inreplace "scripts/ostara-agent", "##PREFIX##", prefix.to_s
+    inreplace "scripts/ostara-agent", "##JAVA_HOME##", Formula["openjdk@17"].opt_prefix
+    inreplace "scripts/ostara-agent", "##CONFIGFILE##", etc / "ostara-agent.yml"
     prefix.install "build/libs/ostara-agent.jar"
     bin.install "scripts/ostara-agent"
   end
@@ -32,8 +32,11 @@ class OstaraAgent < Formula
       To get started, you need to do a few things:
 
       1. Run `ostara-agent setup` to set things up.
-      2. Run `ostara-agent start` to start the agent.
-      3. Run `ostara-agent status` to check the status of the agent.
+      2. Run `ostara-agent start` to start the agent or use `brew services start ostara-agent`.
     EOS
+  end
+
+  test do
+    system bin/"ostara-agent", "version"
   end
 end
