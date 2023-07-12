@@ -3,8 +3,8 @@ class OstaraAgent < Formula
   homepage "https://github.com/krud-dev/ostara"
   url "https://github.com/krud-dev/ostara-agent.git",
     branch:   "main",
-    tag:      "v0.0.3",
-    revision: "a6caa3e72a10e66b9098f00f3f5b7d4f1a7dfb85"
+    tag:      "v0.0.4",
+    revision: "1040929a06d3c5348e1de60688e937cb5fce2d0b"
   head "https://github.com/krud-dev/ostara-agent.git", branch: "main"
 
   bottle do
@@ -23,7 +23,7 @@ class OstaraAgent < Formula
   end
 
   def install
-    system "./gradlew", "bootJar"
+    system "./gradlew", "bootJar", "-Pversion=#{version}"
     prefix.install "build/libs/ostara-agent.jar"
     (bin/"ostara-agent").write <<~EOS
       #!/bin/bash
