@@ -20,8 +20,11 @@ jobs:
           HOMEBREW_GITHUB_PACKAGES_TOKEN: ${{ github.token }}
           HOMEBREW_GITHUB_PACKAGES_USER: ${{ github.actor }}
           PULL_REQUEST: ${{ github.event.pull_request.number }}
-        run: brew pr-pull --debug --tap=$GITHUB_REPOSITORY $PULL_REQUEST
-
+        run: |
+          brew pr-pull --debug --tap=$GITHUB_REPOSITORY $PULL_REQUEST
+          sed -i 's/:any_skip_relocation, x86_64_linux/:any_skip_relocation, all/g' Formula/*.rb
+          git add .
+          git commit --amend
       - name: Push commits
         uses: Homebrew/actions/git-try-push@master
         with:
