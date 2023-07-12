@@ -7,6 +7,11 @@ class OstaraAgent < Formula
     revision: "a6caa3e72a10e66b9098f00f3f5b7d4f1a7dfb85"
   head "https://github.com/krud-dev/ostara-agent.git", branch: "main"
 
+  bottle do
+    root_url "https://github.com/krud-dev/homebrew-tap/releases/download/ostara-agent-0.0.3"
+    sha256 cellar: :any_skip_relocation, all: "345f7cd5f3beb27e479ec9be0042f403654b77cb7a1bb63c71be3410c8d11199"
+  end
+
   depends_on "openjdk@17"
 
   service do
