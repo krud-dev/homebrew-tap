@@ -8,8 +8,8 @@ class OstaraAgent < Formula
   head "https://github.com/krud-dev/ostara-agent.git", branch: "main"
 
   bottle do
-    root_url "https://github.com/krud-dev/homebrew-tap/releases/download/ostara-agent-0.0.6"
-    sha256 cellar: :any_skip_relocation, all: "54993e993888058019f224facb9510fdf25a9a26382157fa05ab4dae96db5c65"
+    root_url "https://github.com/krud-dev/homebrew-tap/releases/download/ostara-agent-0.0.7"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "2c132c9c2a77f2a044d5b4025c30538be89e8eee7de88e9480acc70daabeecbb"
   end
 
   depends_on "openjdk@17"
