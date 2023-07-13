@@ -3,8 +3,8 @@ class OstaraAgent < Formula
   homepage "https://github.com/krud-dev/ostara"
   url "https://github.com/krud-dev/ostara-agent.git",
     branch:   "main",
-    tag:      "v0.0.6",
-    revision: "2d6728553850322650c929f5098b02dd55c3ab0f"
+    tag:      "v0.0.7",
+    revision: "c0dc025191da9b34a78a1f7d494e3139a10c4bf5"
   head "https://github.com/krud-dev/ostara-agent.git", branch: "main"
 
   bottle do
@@ -27,7 +27,7 @@ class OstaraAgent < Formula
     prefix.install "build/libs/ostara-agent.jar"
     (bin/"ostara-agent").write <<~EOS
       #!/bin/bash
-      "#{Formula["openjdk@17"].opt_prefix}/bin/java" -Dconfig.file=#{etc / "ostara-agent.yml"} -jar #{prefix}/ostara-agent.jar "$@"
+      "#{Formula["openjdk@17"].opt_prefix}/bin/java" -Dconfig.file=#{etc / "ostara-agent.properties"} -jar #{prefix}/ostara-agent.jar "$@"
     EOS
   end
 
