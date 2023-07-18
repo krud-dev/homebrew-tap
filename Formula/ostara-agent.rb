@@ -3,7 +3,7 @@ class OstaraAgent < Formula
   homepage "https://github.com/krud-dev/ostara"
   url "https://github.com/krud-dev/ostara-agent.git",
     branch:   "main",
-    tag:      "v0.0.0",
+    tag:      "v0.0.0"
   head "https://github.com/krud-dev/ostara-agent.git", branch: "main"
 
   depends_on "openjdk@17"
